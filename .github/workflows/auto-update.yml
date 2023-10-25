@@ -1,7 +1,7 @@
-        name: Cron Job
+ name: auto-update
 on:
   schedule:
-    - cron: '*/2 * * * *'
+    - cron: '0 */1 * * *'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,6 +15,4 @@ jobs:
           git checkout master
           git rebase upstream/master
           git push -f origin master
-
-
-        
+      
