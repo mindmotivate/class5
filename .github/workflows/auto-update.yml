@@ -1,21 +1,20 @@
-name: Auto update forked repository
-
+        name: Cron Job
 on:
   schedule:
-    - cron: '* * * * *'
-
+    - cron: '0 */2 * * *'
 jobs:
-  update:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run script
+        run: |
+          git remote add upstream https://github.com/malgus-waf/class5.git
+          git fetch upstream
+          git checkout master
+          git rebase upstream/master
+          git push -f origin master
 
-      - name: Fetch upstream changes
-        run: git fetch upstream
 
-      - name: Merge upstream changes
-        run: git merge upstream/main --squash
-
-      - name: Push changes
-        run: git push --set-upstream origin main
+        
