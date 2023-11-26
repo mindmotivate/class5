@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2.5.1
+        uses: actions/checkout@v4
       - name: Run script
         run: |
           git remote add upstream https://github.com/malgus-waf/class5.git
