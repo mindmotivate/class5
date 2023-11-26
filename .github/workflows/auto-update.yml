@@ -1,7 +1,12 @@
- name: auto-update
+name: auto-update
+
 on:
   schedule:
     - cron: '0 */6 * * *'
+  push:
+    branches:
+      - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,7 +17,8 @@ jobs:
         run: |
           git remote add upstream https://github.com/malgus-waf/class5.git
           git fetch upstream
-          git checkout master
-          git rebase upstream/master
-          git push -f origin master
+          git checkout main  # Use 'main' instead of 'master'
+          git rebase upstream/main
+          git push -f origin main  # Use 'main' instead of 'master'
+
       
